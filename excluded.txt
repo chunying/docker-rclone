@@ -1,0 +1,4 @@
+# typical files execluded for sync
+@eaDir/**
+.DS_Store
+.AppleDouble/**
