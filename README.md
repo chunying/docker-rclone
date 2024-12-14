@@ -5,15 +5,17 @@ My simplest rclone docker for remote file synchronization.
 # quick start guide
 
 - Clone this repo
-- Create your own `rclone.conf` following the guide from [rclone](https://rclone.org/docs/#configure)
+- Create your own `rclone.conf` by following the guide from [rclone](https://rclone.org/docs/#configure)
     - You may also want to read [remote setup](https://rclone.org/remote_setup/) and [rclone authorize](https://rclone.org/commands/rclone_authorize/) if you are working on a remote (headless) machine
+- (Optional) modify the default user name (`RC_USER`) and password (`RC_PASS`) in `docker-compose.yml`
+    - The default username/password to access the GUI is `rclone/gui`
 - Choose the directory you want to synchronize
-    - Add the directories as volumes to the `docker-compose.yml`
-    - The sample config maps a local `/volume1/vol1/photos` to `/mnt/photos`; remove it in your setup
+    - Add each directory as a volume to the `docker-compose.yml`
+    - The sample configuration maps a local `/volume1/vol1/photos` to `/mnt/photos`; remove it in your setup
 - You can access the (experimental) web GUI via the link
     - `http://rclone:gui@<serveraddr>:5572/?login_token=cmNsb25lOmd1aQ%3D%3D`
-    - Replace the `<serveraddr>` with your server IP address.
-- The default username/password to access the GUI is `rclone/gui`
+    - Replace the `<serveraddr>` with your server's IP address.
+    - If you have modified the default username and password, use `docker logs` to inspect the access URL.
 
 # some useful commands
 
@@ -34,9 +36,9 @@ My simplest rclone docker for remote file synchronization.
 
 # Sample commands to mount a remote CIFS filesystem
 
-  `mount.cifs "//$SERVERIP/$SERVERDIR" /mnt -o user=$USER,pass=$PASS,iocharset=utf8`
+  `mount.cifs "//$CIFS_SERVERIP/path/to/shared/folder" /mnt -o user=$CIFS_USER,pass=$CIFS_PASS,iocharset=utf8`
 
 # Sample commands to mount a remote NFS filesystem
 
-  `mount -t nfs $SERVERIP/path/to/exported/folder /mnt`
+  `mount -t nfs $NFS_SERVERIP/path/to/exported/folder /mnt`
 

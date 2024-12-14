@@ -1,6 +1,6 @@
 services:
   rclone:
-    image: chuang/rclone
+    image: chunyingh/rclone
     pull_policy: build
     build: .
     restart: unless-stopped
@@ -10,7 +10,9 @@ services:
       - DAC_READ_SEARCH
     ports:
       - "5572:5572/tcp"
+    environment:
+      - RC_USER=rclon3
+      - RC_PASS=gui
     volumes:
       - ./excluded.txt:/excluded.txt:ro
       - ./rclone.conf:/root/.config/rclone/rclone.conf:ro
-      - /volume1/vol1/photos:/mnt/photos

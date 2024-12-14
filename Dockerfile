@@ -2,7 +2,7 @@ FROM debian:bookworm-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
-	tini locales procps net-tools iputils-ping \
+	tini locales procps net-tools iputils-ping tmux \
 	netbase cifs-utils nfs-common rclone
 
 RUN sh -c "echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen"
